@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Application</string>
+    <string name="app_name">Sixt</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="tab_text_1">Cars</string>
+    <string name="tab_text_2">View on Map</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
