@@ -25,7 +25,7 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback, BaseFragment.Communicat
 
     private  var mMap : GoogleMap? = null
     private var supportMapFragment = SupportMapFragment()
-    private lateinit var listCars : List<CarsItem>
+    private lateinit var listCars : ArrayList<CarsItem>
     private  var mutableLiveData = MutableLiveData<List<CarsItem>>()
     private  var mapFragment : SupportMapFragment? = null
     private var carAdapter = CarAdapter()
@@ -46,10 +46,14 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback, BaseFragment.Communicat
         mapFragment!!.getMapAsync(this)
 //        supportMapFragment = mapFragment
 
-        var carList: ArrayList<CarsItem> = arguments?.getParcelableArrayList<Parcelable>("carList") as ArrayList<CarsItem>
+        if(arguments?.getParcelableArrayList<Parcelable>("carList") != null){
+            listCars = arguments?.getParcelableArrayList<Parcelable>("carList") as ArrayList<CarsItem>
+        }
 
-        Log.d("MapFragment",carList.get(0).modelName)
-        listCars = carList
+//        var carList: ArrayList<CarsItem> = arguments?.getParcelableArrayList<Parcelable>("carList") as ArrayList<CarsItem>
+//
+//
+//        listCars = carList
 
         mutableLiveData.observe(viewLifecycleOwner, Observer {
             for (car in it) {
@@ -112,7 +116,7 @@ class MapsFragment : BaseFragment(), OnMapReadyCallback, BaseFragment.Communicat
 //        }
         if(mapFragment != null) {
             mapFragment!!.getMapAsync(this)
-            listCars = lst
+//            listCars = lst
         }else{
             if(activity != null && isAdded) {
                 mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
